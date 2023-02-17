@@ -7,12 +7,10 @@ import MainLayout from '../layouts/MainLayout';
 const AppRouter = () => {
    return (
       <MainLayout>
-         <main>
-            <Routes>
-               <Route path='/' element={<Index />} />
-               <Route path='*' element={<NotFound />} />
-            </Routes>
-         </main>
+         <Routes>
+            <Route path='/' element={<Index />} />
+            <Route path='*' element={<NotFound />} />
+         </Routes>
       </MainLayout>
    );
 };
