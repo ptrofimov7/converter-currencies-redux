@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const Input = () => {
+type InputProps = {
+   label: string,
+   id: string,
+   type: string,
+   value: string | number,
+   onChange: (v: any) =>  void
+}
+
+const Input = ({label, id, type, value, onChange}: InputProps) => {
    return (
-      <div>
-         
+      <div className='custom-input'>
+         <label htmlFor={id}>{label}</label>
+         <input type={type} id={id} placeholder='Summa' value={value} onChange={(e) => {
+            onChange(e.target.value)
+         }} />
       </div>
    );
 };
