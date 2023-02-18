@@ -9,7 +9,7 @@ type SelectProps = {
 
 const Select = ({data, value, onChange}: SelectProps) => {
    return (
-      <select value={value} onChange={(e) => {
+      <select className='custom-select' value={value} onChange={(e) => {
          onChange(e.target.value)
       }}>
          {
