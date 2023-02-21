@@ -1,65 +1,70 @@
-import React, { useState } from 'react';
-import { Currencies, CurrencySide } from '../../types';
+import React, { useEffect, useState } from 'react';
 import Button from '../../components/shared/Button';
 import Input from '../../components/shared/Input';
 import Select from '../../components/shared/Select';
+import getCalculatedChange from './utils/getCalculatedСhange';
+import { IConverterRow, ICurrencySide } from './types';
+import { useAppSelector } from '../../app/hooks';
+import { selectCurrencyList } from './converterSlice';
 
-const ConverterCalculator = () => {
+const ConverterCalculator = ({ curTable }: { curTable: Array<IConverterRow> }) => {
 
-   const data: Currencies = [
-      {
-         value: 'USD'
-      },
-      {
-         value: 'UAH'
-      },
-      {
-         value: 'EUR'
-      },
-   ]
-
-   const [currencyDataFrom, setCurrencyDataFrom] = useState<CurrencySide>(
+   const curList = useAppSelector(state => selectCurrencyList(state))
+   const [currencyDataGet, setCurrencyDataGet] = useState<ICurrencySide>(
       {
          value: 0,
          currency: 'USD'
       })
 
-   const [currencyDataTo, setCurrencyDataTo] = useState<CurrencySide>(
+   const [currencyDataChange, setCurrencyDataChange] = useState<ICurrencySide>(
       {
          value: 0,
          currency: 'UAH'
       })
 
-   const handleClickConvert = (e: any) => {
-      const { value: valFrom, currency: curFrom } = currencyDataFrom
-      const { value: valTo, currency: curTo } = currencyDataTo
-      setCurrencyDataFrom({
-         value: valTo,
-         currency: curTo
+   useEffect(() => {
+      const changeValue = getCalculatedChange(curTable, {
+         value: currencyDataGet.value,
+         currencyGet: currencyDataGet.currency,
+         currencyChange: currencyDataChange.currency
       })
-      setCurrencyDataTo({
-         value: valFrom,
-         currency: curFrom
+      setCurrencyDataChange((prev) => ({ ...prev, value: changeValue }))
+   }, [curTable, currencyDataGet.currency, currencyDataChange.currency, currencyDataGet.value])
+
+   const handleClickConvert = (e: any) => {
+      const { value: valGet, currency: curGet } = currencyDataGet
+      const { value: valChange, currency: curChange } = currencyDataChange
+      setCurrencyDataGet({
+         value: valChange,
+         currency: curChange
+      })
+      setCurrencyDataChange({
+         value: valGet,
+         currency: curGet
       })
    }
 
    return (
       <section className="convertor">
          <div className="convertor-group">
-            <Input label='Get' id='currency1' value={currencyDataFrom.value} type="number" onChange={(value) =>
-               setCurrencyDataFrom(prev => ({ ...prev, value }))
+            <Input label='Get' id='currency1' value={currencyDataGet.value} type="number" onChange={(value) => {
+               setCurrencyDataGet(prev => ({ ...prev, value }))
+            }
             } />
-            <Select data={data} value={currencyDataFrom.currency} onChange={(currency: any) =>
-               setCurrencyDataFrom(prev => ({ ...prev, currency }))
+            <Select data={curList} value={currencyDataGet.currency} onChange={(currency: any) => {
+               setCurrencyDataGet(prev => ({ ...prev, currency }))
+            }
             } />
          </div>
          <Button onClick={handleClickConvert}>Conv.</Button>
          <div className="convertor-group">
-            <Input label='Change' id='currency2' value={currencyDataTo.value} type="number" onChange={(value) =>
-               setCurrencyDataTo(prev => ({ ...prev, value }))
+            <Input label='Change' readOnly id='currency2' value={currencyDataChange.value} type="number" onChange={(value) => {
+               setCurrencyDataChange(prev => ({ ...prev, value }))
+            }
             } />
-            <Select data={data} value={currencyDataTo.currency} onChange={(currency: any) =>
-               setCurrencyDataFrom(prev => ({ ...prev, currency }))
+            <Select data={curList} value={currencyDataChange.currency} onChange={(currency: any) => {
+               setCurrencyDataChange(prev => ({ ...prev, currency }))
+            }
             } />
          </div>
       </section>

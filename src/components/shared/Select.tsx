@@ -1,8 +1,7 @@
 import React from 'react';
-import { Currencies } from '../../types';
 
 type SelectProps = {
-   data: Currencies,
+   data: Array<string>,
    value: string | number,
    onChange: (value: string | number) => void
 }
@@ -15,7 +14,7 @@ const Select = ({data, value, onChange}: SelectProps) => {
          {
             data.map(el => {
                return (
-                  <option value={el.value}>{el.value}</option>
+                  <option key={el} value={el}>{el}</option>
                )
             })
          }

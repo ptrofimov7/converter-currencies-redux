@@ -17,15 +17,18 @@ export function fetchMockData() {
       throw new Error("Counter reached 5");
    }
    try {
-      const response = await fetch(API_URL)
+      const response = await fetch('https://cors-anywhere.herokuapp.com/' + API_URL, {
+         mode: 'cors'
+      })
       if (response.ok) {
          data = await response.json()
          counter++
+         storageService.save('counter', counter)
       } else {
-         throw new Error('Something went wrong')
+         throw new Error('Request for currency courses failed')
       }
-   } catch (error) {
-      throw new Error('Something went wrong')
+   } catch (error: any) {
+      throw new Error('Something went wrong. Error: ' + error.message)
    }
 
    return data
