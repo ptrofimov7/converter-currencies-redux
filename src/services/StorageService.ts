@@ -11,7 +11,7 @@ class StorageService {
       try {
          value = JSON.parse(this.storage.getItem(key) || '')
       } catch (error) {
-         console.error(error)
+         //console.error(error)
       }
       return value
    }
