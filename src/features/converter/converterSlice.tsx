@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSelector, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
 import { fetchData } from "./converterApi";
 
@@ -25,10 +25,10 @@ export const converterSlice = createSlice({
    initialState,
    reducers: {
       updateCurrencies(state, action) {
-         const {currency, userBuy = 0, userSell = 0} = action.payload
-         state.data = state.data.map(el => {
-            if (el.currency === currency) {
-               return {...el, userBuy, userSell}
+         const {currency, column, value} = action.payload
+         state.data = state.data.map((el: any) => {
+            if (el.ccy === currency) {
+               return {...el, [column]: value}
             }
             return el
          })
@@ -55,5 +55,14 @@ export const { updateCurrencies } = converterSlice.actions;
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
 export const selectData = (state: RootState) => state.converter.data;
+
+export const selectCurrencyList = createSelector(selectData, (data) => {
+   const elements = data.reduce((acc: any, cur: any) => {
+      acc.add(cur.ccy)
+      acc.add(cur.base_ccy)
+      return acc
+   }, new Set())
+   return [...elements]
+})
 
 export default converterSlice.reducer;
