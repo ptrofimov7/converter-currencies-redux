@@ -6,14 +6,14 @@ import ConverterTable from '../features/converter/ConverterTable';
 import MainLayout from '../layouts/MainLayout';
 
 function ConverterApp() {
-   const { status, data: curTable } = useAppSelector(state => state.converter, shallowEqual)
+   const { status, data: curTable, error } = useAppSelector(state => state.converter, shallowEqual)
    const isLoading = status === 'loading'
    const isError = status === 'failed'
    return (
       <MainLayout>
          {isLoading
             ? <div>Loading ...</div>
-            : isError ? <div>Something went wrong!</div>
+            : isError ? <div>{error ? 'Error: ' + error + '. ' : ''} Something went wrong!</div>
                : (
                   <>
                      <ConverterTable curTable={curTable} />

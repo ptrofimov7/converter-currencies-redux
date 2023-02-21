@@ -6,7 +6,8 @@ import counterReducer, {
 describe('counter reducer', () => {
    const initialState: ConverterState = {
       data: [],
-      status: 'idle'
+      status: 'idle',
+      error: '',
    };
    it('should handle initial state', () => {
       expect(counterReducer(undefined, { type: 'unknown' })).toEqual(initialState);

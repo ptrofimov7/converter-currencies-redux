@@ -5,30 +5,34 @@ import { fetchData } from "./converterApi";
 export interface ConverterState {
    data: any;
    status: 'idle' | 'loading' | 'failed';
+   error: string | null | undefined;
 }
 const initialState: ConverterState = {
    data: [],
-   status: 'idle'
+   status: 'idle',
+   error: ''
 }
 
 export const fetchCurrencies = createAsyncThunk(
    'counter/fetchCurrencies',
-   async () => {
-     const data = await fetchData();
-     // The value we return becomes the `fulfilled` action payload
-     return data;
+   async (_, { rejectWithValue }) => {
+      try {
+         return await fetchData();
+      } catch (error: any) {
+         return rejectWithValue(error.message)
+      }
    }
- );
+);
 
 export const converterSlice = createSlice({
    name: 'converter',
    initialState,
    reducers: {
       updateCurrencies(state, action) {
-         const {currency, column, value} = action.payload
+         const { currency, column, value } = action.payload
          state.data = state.data.map((el: any) => {
             if (el.ccy === currency) {
-               return {...el, [column]: value}
+               return { ...el, [column]: value }
             }
             return el
          })
@@ -36,17 +40,20 @@ export const converterSlice = createSlice({
    },
    extraReducers: (builder) => {
       builder
-        .addCase(fetchCurrencies.pending, (state) => {
-          state.status = 'loading';
-        })
-        .addCase(fetchCurrencies.fulfilled, (state, action) => {
-          state.status = 'idle';
-          state.data = action.payload;
-        })
-        .addCase(fetchCurrencies.rejected, (state) => {
-          state.status = 'failed';
-        });
-    },
+         .addCase(fetchCurrencies.pending, (state) => {
+            state.status = 'loading';
+            state.error = '';
+         })
+         .addCase(fetchCurrencies.fulfilled, (state, action) => {
+            state.status = 'idle';
+            state.data = action.payload;
+            state.error = '';
+         })
+         .addCase(fetchCurrencies.rejected, (state, action) => {
+            state.status = 'failed';
+            state.error = action.payload as string;
+         });
+   },
 })
 
 export const { updateCurrencies } = converterSlice.actions;

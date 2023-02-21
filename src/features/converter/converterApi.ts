@@ -2,7 +2,7 @@ import storageService from "../../services/StorageService";
 
 // A mock function to mimic making an async request for data
 const data = [] as any
-const API_URL = 'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5'
+const API_URL = 'https://api12.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5'
 export function fetchMockData() {
    return new Promise<{ data: any }>((resolve) =>
      setTimeout(() => resolve({ data }), 500)
@@ -28,7 +28,7 @@ export function fetchMockData() {
          throw new Error('Request for currency courses failed')
       }
    } catch (error: any) {
-      throw new Error('Something went wrong. Error: ' + error.message)
+      throw new Error(error.message)
    }
 
    return data
