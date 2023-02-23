@@ -19,11 +19,13 @@ body {
   box-sizing: border-box;
 }
 
-p, hr {
+p,
+hr {
   margin: 0;
 }
 
-input, select {
+input,
+select {
   font-size: inherit;
 }
 
@@ -70,8 +72,10 @@ input, select {
 }
 
 
-@media (max-width: 368px ) {
-  .footer, .header__content {
+@media (max-width: 368px) {
+
+  .footer,
+  .header__content {
     margin-inline: 10px;
   }
 }
@@ -92,7 +96,7 @@ input, select {
   gap: 10px;
 }
 
-@media (max-width: 600px ) {
+@media (max-width: 600px) {
   .convertor-group {
     flex-direction: column;
   }
@@ -120,7 +124,7 @@ input, select {
   justify-content: center;
 }
 
-@media (max-width: 368px ) {
+@media (max-width: 368px) {
   .convertor {
     flex-direction: column;
   }
@@ -131,26 +135,20 @@ table {
   min-width: 500px;
 }
 
-table, th, td {
+table,
+th,
+td {
   border: 1px solid rgba(224, 224, 224, 1);
 }
-/*
-th, td {
-  padding: 15px;
-  text-align: center;
-  height: 50px;
-  vertical-align: center;
-} */
 
-th, td {
+th,
+td {
   width: 33.333%;
 }
 
 td {
   position: relative;
 }
-
-/* tr:hover {background-color: coral;} */
 
 .table-input {
   position: absolute;
@@ -182,6 +180,18 @@ td {
   border: 1px solid rgba(0 0 0 / 20%);
 }
 
-.editable-cell:hover {
-cursor: pointer;
+.editable-cell {
+  position: relative;
+}
+
+.editable-cell__actions {
+  display: none;
+}
+
+.editable-cell:hover .editable-cell__actions {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: flex;
+  border: 1px solid rgba(0 0 0 / 20%);
 }
