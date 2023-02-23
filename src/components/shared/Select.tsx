@@ -6,7 +6,7 @@ type SelectProps = {
    onChange: (value: string | number) => void
 }
 
-const Select = ({data, value, onChange}: SelectProps) => {
+const Select = ({ data, value, onChange }: SelectProps) => {
    return (
       <select className='custom-select' value={value} onChange={(e) => {
          onChange(e.target.value)

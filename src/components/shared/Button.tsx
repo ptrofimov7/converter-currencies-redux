@@ -5,10 +5,9 @@ type ButtonProps = {
    onClick: (e: any) => void
 }
 
-const Button = ({children, onClick}: ButtonProps) => {
+const Button = ({ children, onClick }: ButtonProps) => {
    return (
       <button onClick={onClick}>
-         {/* <img src='' alt='' /> */}
          {children}
       </button>
    );

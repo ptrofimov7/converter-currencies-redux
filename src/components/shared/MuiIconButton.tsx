@@ -11,16 +11,16 @@ type MuiIconButtonProps = {
    onClick: (e: any) => void
 }
 
-const MuiIconButton = ({children, onClick, color = 'default', label, disabled=false, p=1, size}: MuiIconButtonProps) => {
+const MuiIconButton = ({ children, onClick, color = 'default', label, disabled = false, p = 1, size }: MuiIconButtonProps) => {
    return (
       <IconButton
-      sx={{p}}
-      size={size}
-      onClick={onClick}
-      color={color}
-      aria-label={label}
-      disabled={disabled}
-      >{ children }
+         sx={{ p }}
+         size={size}
+         onClick={onClick}
+         color={color}
+         aria-label={label}
+         disabled={disabled}
+      >{children}
       </IconButton>
    );
 };

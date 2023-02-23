@@ -6,10 +6,10 @@ type InputProps = {
    type: string,
    value: string | number,
    readOnly?: boolean,
-   onChange: (v: any) =>  void
+   onChange: (v: any) => void
 }
 
-const Input = ({label, id, type, value, readOnly = false, onChange}: InputProps) => {
+const Input = ({ label, id, type, value, readOnly = false, onChange }: InputProps) => {
    return (
       <div className='custom-input'>
          <label htmlFor={id}>{label}</label>

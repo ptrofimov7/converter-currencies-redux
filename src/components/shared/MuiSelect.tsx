@@ -9,7 +9,7 @@ type MuiSelectProps = {
 
 const MuiSelect = ({ data, value, onChange }: MuiSelectProps) => {
    return (
-       <FormControl variant="standard" sx={{ minWidth: 120, height: '100%', justifyContent: 'flex-end' }}>
+      <FormControl variant="standard" sx={{ minWidth: 120, height: '100%', justifyContent: 'flex-end' }}>
          <Select
             value={value}
             onChange={(e) => {
