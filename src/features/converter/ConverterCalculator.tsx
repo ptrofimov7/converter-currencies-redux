@@ -27,7 +27,7 @@ const ConverterCalculator = ({ curTable }: { curTable: Array<IConverterRow> }) =
 
    useEffect(() => {
       const changeValue = getCalculatedChange(curTable, {
-         value: currencyDataGet.value,
+         valueGet: currencyDataGet.value,
          currencyGet: currencyDataGet.currency,
          currencyChange: currencyDataChange.currency
       })

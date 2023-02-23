@@ -1,5 +1,5 @@
 
-export default function getCalculatedChange(currencyData: any, { currencyGet, value, currencyChange }: any) {
+export default function getCalculatedChange(currencyData: any, { currencyGet, valueGet, currencyChange }: any) {
 
    let result = 0
 
@@ -8,25 +8,25 @@ export default function getCalculatedChange(currencyData: any, { currencyGet, va
       throw new Error('Currency should be filled')
    }
 
-   if (!value) {
+   if (!valueGet) {
       return result
    }
 
    if (currencyChange === currencyGet) {
-      return value
+      return valueGet
    }
 
    // currencies in one row
    let row = currencyData.find((el: any) => (el.ccy === currencyGet && el.base_ccy === currencyChange))
    if (row) {
       const sale = row.userSale || row.sale
-      return Math.round(100 * sale * value) / 100
+      return Math.round(100 * sale * valueGet) / 100
    }
 
    row = currencyData.find((el: any) => (el.ccy === currencyChange && el.base_ccy === currencyGet))
    if (row) {
       const buy = row.userBuy || row.buy
-      return Math.round(100 * value / buy) / 100
+      return Math.round(100 * valueGet / buy) / 100
    }
 
    // currencyGet in cur table, but currencyChange not in row
@@ -80,7 +80,7 @@ export default function getCalculatedChange(currencyData: any, { currencyGet, va
 
    }
 
-   result = value
+   result = valueGet
    temp.forEach(t => {
       const isCurGet = t.ccy === currencyGet
       const buy = t.userBuy || t.buy
