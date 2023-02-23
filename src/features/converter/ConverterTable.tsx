@@ -1,3 +1,4 @@
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import React, { useState } from 'react';
 import { useAppDispatch } from '../../app/hooks';
 import { updateCurrencies } from './converterSlice';
@@ -15,54 +16,59 @@ const ConverterTable = ({ curTable }: { curTable: Array<IConverterRow> }) => {
    }
    return (
       <div>
-         <table>
-            <thead>
-               <tr>
-                  <th>Currency/Current Base</th>
-                  <th>Buy</th>
-                  <th>Sale</th>
-               </tr>
-            </thead>
-            <tbody>
-               {curTable.map((el: IConverterRow) => {
-                  return (
-                     <tr key={el.ccy}>
-                        <td>{el.ccy}/{el.base_ccy}</td>
+         <TableContainer sx={{ overflow: 'auto' }}>
+            <Table aria-label="simple table">
+               <TableHead>
+                  <TableRow>
+                     <TableCell align="center">Currency/Current Base</TableCell>
+                     <TableCell align="center">Buy</TableCell>
+                     <TableCell align="center">Sale</TableCell>
+                  </TableRow>
+               </TableHead>
+               <TableBody>
+                  {curTable.map((el: IConverterRow) =>
+                  (
+                     <TableRow
+                        key={el.ccy}
+                     >
+                        <TableCell component="th" scope="row">
+                           {el.ccy}/{el.base_ccy}
+                        </TableCell>
                         {!selectedCells.has(`${el.ccy}_userBuy`)
-                           ? <td onClick={(e) => {
+                           ? <TableCell align="center" className='editable-cell' onClick={(e) => {
                               setSelectedCells((prev) => {
                                  const set = new Set(prev)
                                  set.add(`${el.ccy}_userBuy`)
                                  return set
                               })
-                           }}>{el.userBuy || el.buy}</td>
-                           : <td><ConverterTableInput initialValue={el.buy} currency={el.ccy} column="userBuy" defaultValue={el.userBuy || el.buy} onApply={handleApply} onCancel={() => {
+                           }}>{el.userBuy || el.buy}</TableCell>
+                           : <TableCell align="center"><ConverterTableInput initialValue={el.buy} currency={el.ccy} column="userBuy" defaultValue={el.userBuy || el.buy} onApply={handleApply} onCancel={() => {
                               setSelectedCells((prev) => {
                                  const set = new Set(prev)
                                  set.delete(`${el.ccy}_userBuy`)
                                  return set
                               })
-                           }} /></td>}
+                           }} /></TableCell>}
                         {!selectedCells.has(`${el.ccy}_userSale`)
-                           ? <td onClick={(e) => {
+                           ? <TableCell align="center" className='editable-cell' onClick={(e) => {
                               setSelectedCells((prev) => {
                                  const set = new Set(prev)
                                  set.add(`${el.ccy}_userSale`)
                                  return set
                               })
-                           }}>{el.userSale || el.sale}</td>
-                           : <td><ConverterTableInput initialValue={el.sale} currency={el.ccy} column="userSale" defaultValue={el.userSale || el.sale} onApply={handleApply} onCancel={() => {
+                           }}>{el.userSale || el.sale}</TableCell>
+                           : <TableCell align="center"><ConverterTableInput initialValue={el.sale} currency={el.ccy} column="userSale" defaultValue={el.userSale || el.sale} onApply={handleApply} onCancel={() => {
                               setSelectedCells((prev) => {
                                  const set = new Set(prev)
                                  set.delete(`${el.ccy}_userSale`)
                                  return set
                               })
-                           }} /></td>}
-                     </tr>
-                  )
-               })}
-            </tbody>
-         </table>
+                           }} /></TableCell>}
+                     </TableRow>
+                  ))}
+               </TableBody>
+            </Table>
+         </TableContainer>
       </div>
    );
 };
