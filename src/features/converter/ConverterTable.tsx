@@ -34,8 +34,8 @@ const ConverterTable = ({ curTable }: { curTable: Array<IConverterRow> }) => {
    }
 
    return (
-      <div>
-         <TableContainer sx={{ overflow: 'auto' }}>
+      <>
+         <TableContainer sx={{ overflow: 'auto', marginBlock: '40px' }}>
             <Table aria-label="simple table">
                <TableHead>
                   <TableRow>
@@ -102,7 +102,7 @@ const ConverterTable = ({ curTable }: { curTable: Array<IConverterRow> }) => {
                </TableBody>
             </Table>
          </TableContainer>
-      </div>
+      </>
    );
 };
 

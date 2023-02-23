@@ -38,46 +38,19 @@ select {
   padding-inline: 15px;
 }
 
-.main {
+.container {
   max-width: 1024px;
-  width: 100%;
   margin: 0 auto;
+}
+
+main {
+  width: 100%;
   margin-block-start: 120px;
   flex-grow: 1;
 }
 
-.header {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100px;
-}
-
-.header__content {
-  margin-inline: 70px;
-}
-
-.header-block {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  height: 100%;
-}
-
-.footer {
+footer, .header {
   flex: 0 0 100px;
-  margin-inline: 70px;
-}
-
-
-@media (max-width: 368px) {
-
-  .footer,
-  .header__content {
-    margin-inline: 10px;
-  }
 }
 
 .footer-block {
@@ -131,8 +104,8 @@ select {
 }
 
 table {
-  margin-block: 40px;
   min-width: 500px;
+  margin-block-end: 10px;
 }
 
 table,

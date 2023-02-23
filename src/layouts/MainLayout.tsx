@@ -4,12 +4,14 @@ import Header from '../components/Header';
 
 const MainLayout = ({ children }: { children: ReactNode }) => {
    return (
-      <div className='wrapper'>
-         <Header />
-         <main className='main'>
-            {children}
-         </main>
-         <Footer />
+      <div className="container">
+         <div className='wrapper'>
+            <Header />
+            <main className='main'>
+               {children}
+            </main>
+            <Footer />
+         </div>
       </div>
    );
 };

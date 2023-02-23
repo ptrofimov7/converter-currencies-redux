@@ -4,9 +4,9 @@ import MainLayout from '../layouts/MainLayout';
 const NotFound = () => {
    return (
       <MainLayout>
-         <div>
+         <p>
             Not found page
-         </div>
+         </p>
       </MainLayout>
    );
 };
