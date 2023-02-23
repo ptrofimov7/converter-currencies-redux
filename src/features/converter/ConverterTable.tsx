@@ -50,7 +50,7 @@ const ConverterTable = ({ curTable }: { curTable: Array<IConverterRow> }) => {
                      <TableRow
                         key={el.ccy}
                      >
-                        <TableCell component="th" scope="row">
+                        <TableCell component="th" scope="row" align="center">
                            {el.ccy}/{el.base_ccy}
                         </TableCell>
                         {!selectedCells.has(`${el.ccy}_userBuy`)
