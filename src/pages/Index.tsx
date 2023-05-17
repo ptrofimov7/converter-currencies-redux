@@ -15,7 +15,7 @@ function ConverterApp() {
             ? <div>Loading ...</div>
             : isError ?
                <div>
-                  <a href='https://cors-anywhere.herokuapp.com' target='_blank' rel="noreferrer">Allow cors for getting requests</a>
+                  {/* <a href='https://cors-anywhere.herokuapp.com' target='_blank' rel="noreferrer">Allow cors for getting requests</a> */}
                   <div>{error ? 'Error: ' + error + '. ' : ''} Something went wrong!</div>
                </div>
                : (
