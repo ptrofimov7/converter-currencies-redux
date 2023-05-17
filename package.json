@@ -2,7 +2,7 @@
   "name": "redux-currency-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://ptrofimov7.github.io/converter-currencies-redux",
+  "homepage": "https://ptrofimov7.github.io/converter-currencies-redux/",
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
