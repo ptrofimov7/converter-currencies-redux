@@ -17,7 +17,8 @@ export function fetchMockData() {
       throw new Error("Counter reached 5");
    }
    try {
-      const response = await fetch('https://cors-anywhere.herokuapp.com/' + API_URL, {
+      //const response = await fetch('https://cors-anywhere.herokuapp.com/' + API_URL, {
+      const response = await fetch('http://localhost:3010/currencies', {
          mode: 'cors'
       })
       if (response.ok) {
