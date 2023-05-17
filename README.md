@@ -1,5 +1,6 @@
 ## Currency converter
 Currency API https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5
+GHP: https://ptrofimov7.github.io/converter-currencies-redux/
 
 ## Available Scripts
 
