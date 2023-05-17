@@ -13,7 +13,11 @@ function ConverterApp() {
       <MainLayout>
          {isLoading
             ? <div>Loading ...</div>
-            : isError ? <div>{error ? 'Error: ' + error + '. ' : ''} Something went wrong!</div>
+            : isError ?
+               <div>
+                  <a href='https://cors-anywhere.herokuapp.com' target='_blank' rel="noreferrer">Allow cors for getting requests</a>
+                  <div>{error ? 'Error: ' + error + '. ' : ''} Something went wrong!</div>
+               </div>
                : (
                   <>
                      <ConverterTable curTable={curTable} />
