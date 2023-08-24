@@ -18,7 +18,7 @@ export function fetchMockData() {
    }
    try {
       //const response = await fetch('https://cors-anywhere.herokuapp.com/' + API_URL, {
-      const response = await fetch('http://localhost:3000/currencies', {
+      const response = await fetch('http://localhost:3010/currencies', {
          mode: 'cors'
       })
       if (response.ok) {
